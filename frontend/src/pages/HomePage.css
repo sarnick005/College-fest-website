@@ -72,3 +72,65 @@
 	margin-bottom: 50px;
 	margin-top: 50px;
 }
+
+#page3 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	background: linear-gradient(180deg, rgba(87, 68, 135, 1) 39%, rgba(14, 17, 17, 1) 100%);
+	/* Reversed gradient */
+	position: relative;
+	/* Adjust padding as needed */
+	color: #fff;
+}
+
+.page3_heading {
+	font-family: "Bebas Neue";
+	font-weight: 700;
+	font-size: 70px;
+	margin-top: 60px;
+
+}
+
+#page4 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	/* Adjust padding as needed */
+	color: #fff;
+}
+
+#page4>h3 {
+	font-family: "Bebas Neue";
+	font-weight: 700;
+	width: 90%;
+	font-size: 120px;
+	line-height: 0.9;
+	margin-top: 60px;
+}
+
+#page4>h1 {
+
+	font-family: "Bebas Neue";
+	font-weight: 700;
+	width: 90%;
+	font-size: 200px;
+	line-height: 0.9;
+	color: #9c76fc;
+}
+
+#page4>p {
+	width: 90%;
+}
+
+#page4>h1>p {
+	color: #fff;
+	display: inline-block;
+}

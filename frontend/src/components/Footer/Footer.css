@@ -1,19 +1,35 @@
 /* Footer.css */
+footer {
+    padding: 20px;
+    background-color: #0e1111;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
 .map-container {
-    width: 80%;
-    margin: 0 auto;
+    width: 1200px;
+    height: 450px;
+    /* Adjust height */
+    margin: 0 auto 20px auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    /* Add shadow for 3D effect */
     position: relative;
-    /* Set position to relative for absolute positioning */
+    perspective: 1000px;
+    /* Add perspective */
 }
 
 .map-container iframe {
     width: 100%;
-    /* Set iframe width to fill its container */
-    height: 450px;
-    /* Set a fixed height for the map */
+    height: 100%;
     border: 0;
+    /* Rotate the iframe for 3D effect */
+    transition: transform 0.5s ease;
+    /* Add transition for smooth animation */
 }
-
 
 .map-overlay {
     position: absolute;
@@ -21,11 +37,28 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent white background */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Add a shadow effect */
     z-index: 2;
-    /* Ensure overlay is above the map */
+}
+
+.social-links {
+    display: flex;
+    gap: 40px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #fde6ff;
+}
+
+.map-container:hover {
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
+    /* Adjust shadow on hover */
 }
