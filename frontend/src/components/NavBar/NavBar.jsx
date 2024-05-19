@@ -13,6 +13,7 @@ const NavBar = () => {
 
   return (
     <div>
+      <p>Navbar</p>
       <button onClick={handleEventsButton}>Events</button>
       <button onClick={handleMembersButton}>Members/faculty</button>
       <button>Memories</button>

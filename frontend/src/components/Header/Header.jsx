@@ -26,6 +26,7 @@ const Header = () => {
   return (
     <div>
       <nav>
+        <p>Header</p>
         {isLoggedIn ? (
           <div>
             <button onClick={handleLogoutButton}>Logout</button> <br /><br />

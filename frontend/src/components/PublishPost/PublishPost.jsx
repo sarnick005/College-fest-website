@@ -10,18 +10,44 @@ const PublishPost = () => {
     description: "",
     category: "",
     year: "",
-    day: "", 
-    contentFile: null, 
-    
+    day: "",
+    contentFile: null,
   });
-const navigate = useNavigate();
-  const handleChange = (e) => {
-    if (e.target.name === "contentFile") {
-      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+  const navigate = useNavigate();
+
+const handleChange = (e) => {
+  const { name, value, files } = e.target;
+
+  if (name === "contentFile") {
+    const selectedFile = files[0];
+    if (selectedFile) {
+      if (selectedFile.type.startsWith("image/")) {
+        if (selectedFile.size > 10 * 1024 * 1024) {
+          alert("Image file size should be less than 10MB");
+          e.target.value = null; 
+          return;
+        }
+      } else if (selectedFile.type.startsWith("video/")) {
+        if (selectedFile.size > 100 * 1024 * 1024) {
+
+          alert("Video file size should be less than 100MB");
+          e.target.value = null; 
+          return;
+        }
+      }
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: selectedFile,
+      }));
     }
-  };
+  } else {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +57,7 @@ const navigate = useNavigate();
       postData.append("description", formData.description);
       postData.append("category", formData.category);
       postData.append("year", formData.year);
-      postData.append("day", formData.day); 
+      postData.append("day", formData.day);
       postData.append("content", formData.contentFile);
 
       const response = await axios.post("/api/v1/posts", postData, {
@@ -84,6 +110,7 @@ const navigate = useNavigate();
             <option value="sponsor">Sponsor</option>
             <option value="band performance">Band Performance</option>
             <option value="member">Member</option>
+            <option value="poster">Poster</option>
           </select>
         </div>
         <div>
@@ -96,7 +123,6 @@ const navigate = useNavigate();
             onChange={handleChange}
           />
         </div>
-        {/* Dropdown for day field */}
         <div>
           <label>Day:</label>
           <select
@@ -111,7 +137,6 @@ const navigate = useNavigate();
             <option value="2">2</option>
           </select>
         </div>
-        {/* Input field for file upload */}
         <div>
           <label>Content (Image/Video):</label>
           <input

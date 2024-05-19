@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import Poster from "../components/HomePagePoster/Poster";
+import Footer from "../components/Footer/Footer";
 
 const checkLoginStatus = () => {
   return new Promise((resolve) => {
@@ -31,6 +32,7 @@ const HomePage = () => {
     <div>
       <Header isLoggedIn={isLoggedIn} />
       <Poster />
+      <Footer/>
     </div>
   );
 };

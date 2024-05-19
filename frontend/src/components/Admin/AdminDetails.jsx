@@ -70,14 +70,7 @@ const AdminDetails = () => {
           />
         )}
       </p>
-      <p>
-        <strong>Created At:</strong>{" "}
-        {new Date(adminDetails.createdAt).toLocaleString()}
-      </p>
-      <p>
-        <strong>Updated At:</strong>{" "}
-        {new Date(adminDetails.updatedAt).toLocaleString()}{" "}
-      </p>
+      
       <Logout />
       <h1>Publish a post</h1>
       {!isPublishPostClicked && (
