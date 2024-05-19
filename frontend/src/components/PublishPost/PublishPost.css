@@ -1,0 +1,85 @@
+/* PublishPost.css */
+
+.publish-post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.publish-post-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.publish-post-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.publish-post-container form div {
+    margin-bottom: 15px;
+}
+
+.publish-post-container form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.publish-post-container form input,
+.publish-post-container form select,
+.publish-post-container form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.publish-post-container form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.publish-post-container form input[type="file"] {
+    padding: 3px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.publish-post-container form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.publish-post-container form button:hover {
+    background-color: #0056b3;
+}
+
+.publish-post-container form .cancel-button {
+    background-color: #dc3545;
+}
+
+.publish-post-container form .cancel-button:hover {
+    background-color: #c82333;
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MediaPlayer from "../../utils/MediaPlayer";
-import "./Member.css";
-import GoToHome from "../../Home/GoToHome";
-import { useAuth } from "../../utils/AuthContext";
-import Loader from "../../Loader/Loader";
+import MediaPlayer from "../utils/MediaPlayer";
+import "./StudentGallery.css";
+import GoToHome from "../Home/GoToHome";
+import { useAuth } from "../utils/AuthContext";
+import Loader from "../Loader/Loader";
 
-const Members = () => {
+const StudentGallery = () => {
   const [posterDetails, setPosterDetails] = useState([]);
   const { isLoggedIn } = useAuth();
   const [loading, setLoading] = useState(true);
@@ -18,9 +18,8 @@ const Members = () => {
         const response = await axios.get("/api/v1/posts/");
         if (response.data.success && response.data.data.allPosts) {
           const posters = response.data.data.allPosts.filter(
-            (post) => post.category === "member"
+            (post) => post.category === "student gallery"
           );
-          // Sort posters by year in descending order
           posters.sort((a, b) => b.year - a.year);
           setPosterDetails(posters);
         } else {
@@ -29,10 +28,7 @@ const Members = () => {
       } catch (error) {
         setError("Failed to fetch poster details");
       } finally {
-        // Set loading to false after 1000 milliseconds
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
+        setLoading(false);
       }
     };
 
@@ -62,7 +58,7 @@ const Members = () => {
   const sortedYears = Object.keys(groupedPosters).sort((a, b) => b - a);
 
   if (loading) {
-    return <Loader />;
+    return <div><Loader/></div>;
   }
 
   if (error) {
@@ -72,7 +68,7 @@ const Members = () => {
   return (
     <div className="posters-container">
       <GoToHome />
-      <h1>Members</h1>
+      <h1>Student Gallery</h1>
       {sortedYears.map((year) => (
         <div key={year}>
           <h2>Year: {year}</h2>
@@ -112,4 +108,4 @@ const Members = () => {
   );
 };
 
-export default Members;
+export default StudentGallery;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Login.css"; // Import the CSS file
 
 const Login = () => {
   const [adminName, setAdminName] = useState("");
@@ -25,30 +26,48 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <h1>Admin Login</h1>
+      {" "}
       <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          name="adminName"
-          placeholder="Admin Name"
-          value={adminName}
-          onChange={(e) => setAdminName(e.target.value)}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
+        <div className="form-group">
+          {" "}
+          
+          <input
+            type="text"
+            name="adminName"
+            placeholder="Admin Name"
+            value={adminName}
+            onChange={(e) => setAdminName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          {" "}
+          
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          {" "}
+          
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          {" "}
+
+          <button type="submit">Login</button>
+        </div>
       </form>
     </div>
   );

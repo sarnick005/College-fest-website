@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import Poster from "../components/HomePagePoster/Poster";
 import Footer from "../components/Footer/Footer";
+import Loader from "../components/Loader/Loader";
 
 const checkLoginStatus = () => {
   return new Promise((resolve) => {
@@ -25,7 +26,7 @@ const HomePage = () => {
   }, []);
 
   if (isLoggedIn === null) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (

@@ -10,6 +10,9 @@ const NavBar = () => {
   const handleMembersButton = async () => {
     navigate("/members");
   };
+  const handleStudentGalleryButton = async () => {
+    navigate("/student-gallery");
+  };
 
   return (
     <div>
@@ -17,7 +20,7 @@ const NavBar = () => {
       <button onClick={handleEventsButton}>Events</button>
       <button onClick={handleMembersButton}>Members/faculty</button>
       <button>Memories</button>
-      <button>Student Gallery</button>
+      <button onClick={handleStudentGalleryButton}>Student Gallery</button>
     </div>
   );
 };

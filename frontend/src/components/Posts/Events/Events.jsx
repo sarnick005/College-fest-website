@@ -5,11 +5,11 @@ import "./Events.css";
 import NavBar from "../../NavBar/NavBar";
 import { useAuth } from "../../utils/AuthContext";
 import GoToHome from "../../Home/GoToHome";
+import Loader from "../../Loader/Loader";
 
 const Events = ({ year }) => {
   const [posterDetails, setPosterDetails] = useState([]);
   const { isLoggedIn } = useAuth();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,8 @@ const Events = ({ year }) => {
           const posters = response.data.data.allPosts.filter(
             (post) =>
               (post.category === "freshers" ||
-                post.category === "students performance" || post.category === "band performance") &&
+                post.category === "student performance" ||
+                post.category === "band performance") &&
               post.year === year
           );
           setPosterDetails(posters);
@@ -30,16 +31,17 @@ const Events = ({ year }) => {
       } catch (error) {
         setError("Failed to fetch poster details");
       } finally {
-        setLoading(false);
+        
+  
       }
     };
 
     fetchPosterDetails();
-  }, [year]); 
+  }, [year]);
 
   const handleDeletePoster = async (posterId) => {
     try {
-      await axios.delete(`/api/v1/posts/${posterId}`);
+      await axios.delete(`/api/v1/posts/delete/${posterId}`);
       setPosterDetails((prevPosters) =>
         prevPosters.filter((poster) => poster._id !== posterId)
       );
@@ -48,45 +50,68 @@ const Events = ({ year }) => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  const groupedPosters = posterDetails.reduce((acc, post) => {
+    const day = post.day;
+    const category = post.category;
+    if (!acc[day]) {
+      acc[day] = {};
+    }
+    if (!acc[day][category]) {
+      acc[day][category] = [];
+    }
+    acc[day][category].push(post);
+    return acc;
+  }, {});
+
+  const categoryOrder = ["freshers", "student performance", "band performance"];
 
   return (
     <div className="posters-container">
       <GoToHome />
-      <h1>Events</h1>
-      <div className="posters">
-        {posterDetails.map((post) => (
-          <div key={post._id} className="poster-item">
-            <div className="content">
-              {post.contentType === "image" ? (
-                <img
-                  className="poster-img"
-                  src={post.content}
-                  alt="Post content"
-                />
-              ) : (
-                <MediaPlayer
-                  content={post.content}
-                  description={post.description}
-                />
-              )}
-              <br />
-              <span>{post.title}</span>
-              {isLoggedIn && (
-                <button onClick={() => handleDeletePoster(post._id)}>
-                  Delete
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      <h1 className="year">Events of {year}</h1>
+      {Object.keys(groupedPosters).map((day) => (
+        <div key={day}>
+          <h2 className="day">Day {day}</h2>
+          {categoryOrder.map(
+            (category) =>
+              groupedPosters[day][category] && (
+                <div key={category}>
+                  <h3>Category: {category}</h3>
+                  <div className="posters">
+                    {groupedPosters[day][category].map((post) => (
+                      <div key={post._id} className="poster-item">
+                        <div className="content">
+                          {post.contentType === "image" ? (
+                            <img
+                              className="poster-img"
+                              src={post.content}
+                              alt="Post content"
+                            />
+                          ) : (
+                            <MediaPlayer
+                              content={post.content}
+                              description={post.description}
+                            />
+                          )}
+                          <br />
+                          <span>{post.title}</span>
+                          {isLoggedIn && (
+                            <button
+                              onClick={() => handleDeletePoster(post._id)}
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+          )}
+        </div>
+      ))}
     </div>
   );
 };

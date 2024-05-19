@@ -5,6 +5,8 @@ import Logout from "../Auth/Logout";
 import PublishPost from "../PublishPost/PublishPost";
 import { useAuth } from "../utils/AuthContext"; // Adjust the path accordingly
 import GoToHome from "../Home/GoToHome";
+import Timer from "../Timer/Timer";
+import Loader from "../Loader/Loader";
 
 const AdminDetails = () => {
   const { setIsLoggedIn } = useAuth();
@@ -44,12 +46,12 @@ const AdminDetails = () => {
   };
 
   if (!adminDetails) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (
     <div>
-      <GoToHome/>
+      <GoToHome />
       <h1>Admin Details</h1>
       <p>
         <strong>ID:</strong> {adminDetails._id}
@@ -70,7 +72,6 @@ const AdminDetails = () => {
           />
         )}
       </p>
-      
       <Logout />
       <h1>Publish a post</h1>
       {!isPublishPostClicked && (
@@ -79,10 +80,9 @@ const AdminDetails = () => {
       {isPublishPostClicked && (
         <>
           <PublishPost />
-          <button onClick={handleCancelClick}>Cancel</button>
         </>
       )}
-      
+
     </div>
   );
 };

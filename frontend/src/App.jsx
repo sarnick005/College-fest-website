@@ -6,7 +6,8 @@ import HomePage from "./pages/HomePage";
 import AdminDetails from "./components/Admin/AdminDetails";
 // import Events from "./components/Posts/Events/Events";
 import Members from "./components/Posts/Members/Members";
-import EventsPage from "./pages/EventsPage";
+import EventsPage from "./pages/EventsPage/EventsPage";
+import StudentGallery from "./components/StudentGallery/StudentGallery"
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/profile" element={<AdminDetails />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/members" element={<Members />} />
+          <Route path="/student-gallery" element={<StudentGallery />} />
         </Routes>
       </Router>
     </AuthProvider>
