@@ -1,0 +1,74 @@
+#main-container {
+	overflow: hidden;
+	background-color: #0e1111;
+	padding-top: 100px;
+	/* Adjust padding to account for navbar height */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+#page1 {
+	width: 100%;
+	background-color: #0e1111;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 60px;
+	/* Adjust padding for content alignment */
+	margin-bottom: 30px;
+}
+
+.heading {
+	font-weight: 700;
+	font-size: 20px;
+	font-style: italic;
+}
+
+.text {
+	margin-top: 8px;
+	font-weight: 100;
+	font-size: 15px;
+	font-style: italic;
+}
+
+.event_name {
+	height: 300px;
+	width: 100%;
+	font-family: "Bebas Neue";
+	margin-top: 30px;
+	background-color: #000;
+	font-weight: 700;
+	font-size: 190px;
+	text-align: center;
+	padding-top: 50px;
+	color: #9c76fc;
+}
+
+#page2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	background: rgb(14, 17, 17);
+	background: linear-gradient(180deg, rgba(14, 17, 17, 1) 39%, rgba(87, 68, 135, 1) 100%);
+	position: relative;
+	/* Adjust padding as needed */
+	color: #fff;
+}
+
+.page2_heading {
+	font-family: "Bebas Neue";
+	font-weight: 700;
+	font-size: 70px;
+	margin-top: 30px;
+}
+
+.timer {
+	margin-bottom: 50px;
+	margin-top: 50px;
+}

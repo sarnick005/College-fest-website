@@ -1,163 +1,48 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-
-
-.container {
-    min-height: 80vh;
-    position: relative;
-    background-image: url(images/pattern-hills.svg), url(images/bg-stars.svg);
-    background-repeat: no-repeat, no-repeat;
-    background-size: 850px, 950px;
-    background-position: 90% 100%, 50% 30%;
-}
-
-.heading {
-    color: white;
-    font-size: 18px;
-    text-transform: uppercase;
-    width: 90%;
-    margin: auto;
-    margin-top: 7em;
-    letter-spacing: .3em;
-}
-
-.countdown-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    width: 90%;
-    margin: auto;
-    padding: 2em 0;
-}
-
-.card {
-    height: 60px;
-    background: hsl(236, 21%, 26%);
+.timer-container {
     text-align: center;
-    font-size: 32px;
-    color: hsl(345, 95%, 68%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    margin-top: 20px;
+}
+
+.countdown {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.timer-element {
+    display: inline-block;
+    border: 2px solid #333;
+    padding: 5px 10px;
+    margin: 0 5px;
     border-radius: 5px;
-    box-shadow: 0 8px 1px -4px hsl(234, 17%, 12%);
-    transform-style: preserve-3d;
-    perspective: 600px;
-    transition: transform .7s;
+    transition: transform 0.5s ease-in-out;
+   
 }
 
-.display {
-    z-index: 1;
+.timer-element:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.front-display {
-    position: absolute;
-    height: 30px;
-    top: 0px;
-    width: 100%;
-    background: hsl(233, 21%, 23%);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    backface-visibility: hidden;
-    transition: transform 2s;
-    animation: front-display 3s 1s infinite ease-in-out;
-}
-
-.back-display {
-    position: absolute;
-    height: 30px;
-    top: 30px;
-    width: 100%;
-}
-
-.display-heading {
-    font-size: 7px;
-    text-transform: uppercase;
-    color: hsl(237, 18%, 59%);
-    letter-spacing: .2em;
-    margin-top: 10px;
-}
-
-.social-icons {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    bottom: 20px;
-    margin-left: 35%;
-}
-
-.icon-flex:nth-child(2),
-.icon-flex:nth-child(3) {
-    margin-left: 2em;
-}
-
-.fab {
-    color: hsl(237, 18%, 59%);
-    font-size: 20px;
-}
-
-.fab:hover {
-    color: hsl(345, 95%, 68%);
-    cursor: pointer;
-}
-
-.attribution {
-    display: none;
-    font-size: 11px;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-}
-
-.attribution a {
-    color: hsl(345, 95%, 68%);
-}
-
-@media (min-width: 700px) {
-    .container {
-        min-height: 78vh;
-        background-image: url(images/pattern-hills.svg), url(images/bg-stars.svg);
-        background-size: contain, 950px;
+/* Animation Keyframes for folding effect */
+@keyframes fold {
+    0% {
+        transform: perspective(400px) rotateX(0deg);
+        /* Initial state: no folding */
     }
 
-    .heading {
-        margin-top: 10em;
-        font-size: 13px;
+    50% {
+        transform: perspective(400px) rotateX(-90deg);
+        /* Mid-state: folding */
     }
 
-    .countdown-container {
-        width: 40%;
-        margin-top: 2em;
+    100% {
+        transform: perspective(400px) rotateX(0deg);
+        /* Final state: back to original */
     }
+}
 
-    .card {
-        font-size: 50px;
-        height: 80px;
-    }
-
-    .display-heading {
-        font-size: 9px;
-        margin-top: 15px;
-    }
-
-    .front-display {
-        height: 40px;
-    }
-
-    .social-icons {
-        margin-left: 45%;
-        bottom: 50px;
-    }
-
-    .attribution {
-        display: block;
-        margin-left: 30%;
-    }
+/* Apply animation to each timer element */
+.timer-element.animate {
+    animation: fold 0.5s forwards;
+    /* Apply fold animation */
 }

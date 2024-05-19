@@ -1,4 +1,43 @@
-img.post-image {
-    height: 200px;
-    width: 170px;
+.posters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Center the content horizontally */
+    margin-top: 20px;
+}
+
+.poster-item {
+    margin: 10px;
+    /* Adjust the margin between the cards */
+}
+
+.content {
+    margin-top: 10px;
+    margin-right: 20px;
+    /* Initial height of the card */
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* Prevent background image from repeating */
+    background-position: center;
+    /* Center the background image */
+    position: relative;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    /* Shadow properties */
+}
+
+.label {
+    position: absolute;
+    top: 10px;
+    background-color: #9c76fc;
+    padding: 5px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+
+    /* Adjust the width and height of the card for larger screens */
+    .content {
+        width: 320px;
+        height: 420px;
+    }
 }
