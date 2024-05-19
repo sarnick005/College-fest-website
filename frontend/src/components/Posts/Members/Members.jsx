@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MediaPlayer from "../../utils/MediaPlayer";
 import "./Member.css";
+import GoToHome from "../../Home/GoToHome";
+import { useAuth } from "../../utils/AuthContext";
 
 const Members = () => {
   const [posterDetails, setPosterDetails] = useState([]);
+  const { isLoggedIn } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,10 +30,19 @@ const Members = () => {
       }
     };
 
-    if (posterDetails.length === 0) {
-      fetchPosterDetails();
+    fetchPosterDetails();
+  }, []);
+
+  const handleDeletePoster = async (posterId) => {
+    try {
+      await axios.delete(`/api/v1/posts/${posterId}`);
+      setPosterDetails((prevPosters) =>
+        prevPosters.filter((poster) => poster._id !== posterId)
+      );
+    } catch (error) {
+      console.error("Error deleting poster:", error);
     }
-  }, [posterDetails]);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,16 +54,11 @@ const Members = () => {
 
   return (
     <div className="posters-container">
-      <h1>Posters</h1>
+      <GoToHome />
+      <h1>Members</h1>
       <div className="posters">
         {posterDetails.map((post) => (
           <div key={post._id} className="poster-item">
-            {/* <p>
-              <strong>ID:</strong> {post._id}
-            </p>
-            <p>
-              <strong>Admin ID:</strong> {post.adminId}
-            </p> */}
             <div className="content">
               {post.contentType === "image" ? (
                 <img
@@ -66,26 +73,19 @@ const Members = () => {
                 />
               )}
               <br />
-
               <span>{post.title}</span>
+              {isLoggedIn && (
+                <button onClick={() => handleDeletePoster(post._id)}>
+                  Delete
+                </button>
+              )}
             </div>
-            {/* <p>
-              <strong>Description:</strong> {post.description}
-            </p>
             <p>
-              <strong>Category:</strong> {post.category}
+              <strong>Description:</strong> {post.description}
             </p>
             <p>
               <strong>Year:</strong> {post.year}
             </p>
-            <p>
-              <strong>Created At:</strong>{" "}
-              {new Date(post.createdAt).toLocaleString()}
-            </p>
-            <p>
-              <strong>Updated At:</strong>{" "}
-              {new Date(post.updatedAt).toLocaleString()}
-            </p> */}
           </div>
         ))}
       </div>

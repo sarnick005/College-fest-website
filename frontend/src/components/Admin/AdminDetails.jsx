@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Logout from "../Auth/Logout";
 import PublishPost from "../PublishPost/PublishPost";
 import { useAuth } from "../utils/AuthContext"; // Adjust the path accordingly
+import GoToHome from "../Home/GoToHome";
 
 const AdminDetails = () => {
   const { setIsLoggedIn } = useAuth();
   const [adminDetails, setAdminDetails] = useState(null);
+  const [isPublishPostClicked, setIsPublishPostClicked] = useState(false); // State to track if Publish Post button is clicked
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,12 +35,21 @@ const AdminDetails = () => {
     navigate("/");
   };
 
+  const handlePublishPostClick = () => {
+    setIsPublishPostClicked(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsPublishPostClicked(false); // Reset state
+  };
+
   if (!adminDetails) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
+      <GoToHome/>
       <h1>Admin Details</h1>
       <p>
         <strong>ID:</strong> {adminDetails._id}
@@ -69,8 +80,16 @@ const AdminDetails = () => {
       </p>
       <Logout />
       <h1>Publish a post</h1>
-      <PublishPost />
-      <button onClick={handleNavigateHome}>Go to Home Page</button>{" "}
+      {!isPublishPostClicked && (
+        <button onClick={handlePublishPostClick}>Publish Post</button>
+      )}{" "}
+      {isPublishPostClicked && (
+        <>
+          <PublishPost />
+          <button onClick={handleCancelClick}>Cancel</button>
+        </>
+      )}
+      
     </div>
   );
 };

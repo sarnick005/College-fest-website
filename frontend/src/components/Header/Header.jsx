@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/AuthContext"; // Adjust the path accordingly
+import { useAuth } from "../utils/AuthContext";
 import axios from "axios";
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
@@ -20,11 +20,17 @@ const Header = () => {
     }
   };
 
+  const handleProfileButton = () => {
+    navigate("/profile");
+  };
   return (
     <div>
       <nav>
         {isLoggedIn ? (
-          <button onClick={handleLogoutButton}>Logout</button>
+          <div>
+            <button onClick={handleLogoutButton}>Logout</button> <br /><br />
+            <button onClick={handleProfileButton}>Profile</button>
+          </div>
         ) : (
           <button onClick={handleLoginButton}>Admin Login</button>
         )}

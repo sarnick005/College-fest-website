@@ -31,7 +31,7 @@ const navigate = useNavigate();
       postData.append("description", formData.description);
       postData.append("category", formData.category);
       postData.append("year", formData.year);
-      postData.append("day", formData.day); // Append day value
+      postData.append("day", formData.day); 
       postData.append("content", formData.contentFile);
 
       const response = await axios.post("/api/v1/posts", postData, {
