@@ -24,8 +24,10 @@
 
 .heading {
 	font-weight: 700;
-	font-size: 20px;
+	font-size: 16px;
 	font-style: italic;
+	width: 100vw;
+	text-align: center;
 }
 
 .text {
@@ -36,15 +38,18 @@
 }
 
 .event_name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 300px;
 	width: 100%;
 	font-family: "Bebas Neue";
 	margin-top: 30px;
 	background-color: #000;
 	font-weight: 700;
-	font-size: 190px;
+	font-size: 120px;
 	text-align: center;
-	padding-top: 50px;
+	/* padding-top: 50px; */
 	color: #9c76fc;
 }
 
@@ -69,8 +74,7 @@
 }
 
 .timer {
-	margin-bottom: 50px;
-	margin-top: 50px;
+	margin-bottom: 60px;
 }
 
 #page3 {

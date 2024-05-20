@@ -41,9 +41,13 @@ const HomePage = () => {
   return (
     <div id="main-container">
       <div id="page1">
-        <div className="heading">SWAMI VIVEKANANDA INSTITUTE OF TECHNOLOGY</div>
+        <div className="heading">
+          <h1>SWAMI VIVEKANANDA INSTITUTE OF SCIENCE & TECHNOLOGY</h1>
+        </div>
         <div className="text">PRESENTS</div>
-        <div className="event_name">ENTHUZEA' 24</div>
+        <div className="event_name">
+          <h3>ENTHUZEA' 24</h3>
+        </div>
       </div>
       <div className="timer">
         <Timer selectedDateTime={selectedDateTime} />
